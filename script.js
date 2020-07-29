@@ -15,7 +15,7 @@ function clock() {
   minutes.innerHTML = m;
   seconds.innerHTML = s;
 
-  const nama = item.value;
+  const nama = item.value ? item.value : 'Nama';
 
   if (h < 12) {
     const ucap = `Selamat Pagi, <span>${nama}</span>`;
