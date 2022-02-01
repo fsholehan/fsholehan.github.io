@@ -103,3 +103,13 @@ body {
   color: #fff;
   cursor: pointer;
 } */
+
+@media (max-width: 768px) {
+  .container {
+    align-items: start;
+    margin-top: 20px;
+  }
+  .clock #time {
+    margin-top: 4em;
+  }
+}
