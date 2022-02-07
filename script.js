@@ -15,8 +15,12 @@ function clock() {
 
   const nama = item.value ? item.value : "Bestie";
 
-  if (h < 12) {
+  if (h < 10) {
     const ucap = `Pagi, <span>${nama}</span>`;
+    text.innerHTML = ucap;
+  }
+  if (h > 12 && h < 12) {
+    const ucap = `Udah mau siang lo, <span>${nama}</span>`;
     text.innerHTML = ucap;
   }
   if (h >= 12 && h < 15) {
