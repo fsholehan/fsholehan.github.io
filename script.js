@@ -19,7 +19,7 @@ function clock() {
     const ucap = `Pagi, <span>${nama}</span>`;
     text.innerHTML = ucap;
   }
-  if (h > 12 && h < 12) {
+  if (h > 10 && h < 12) {
     const ucap = `Udah mau siang lo, <span>${nama}</span>`;
     text.innerHTML = ucap;
   }
