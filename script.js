@@ -28,7 +28,7 @@ function clock() {
     text.innerHTML = ucap;
   }
   if (h >= 15 && h < 18) {
-    const ucap = `Sore, <span>${nama}</span>`;
+    const ucap = `Sore sayangku jangan lupa mandi ya 🥰, <span>${nama}</span>`;
     text.innerHTML = ucap;
   }
   if (h >= 18 && h <= 24) {
