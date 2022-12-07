@@ -13,14 +13,14 @@ function clock() {
   minutes.innerHTML = m < 10 ? "0" + m : m;
   seconds.innerHTML = s < 10 ? "0" + s : s;
 
-  const nama = item.value ? item.value : "Bestie";
+  const nama = item.value ? item.value : "Kamu";
 
   if (h < 10) {
-    const ucap = `Pagi, <span>${nama}</span>`;
+    const ucap = `Selamat Pagi <span>${nama}</span>, Semoga harimu menyenangkan!`;
     text.innerHTML = ucap;
   }
   if (h > 10 && h < 12) {
-    const ucap = `Udah mau siang lo, <span>${nama}</span>`;
+    const ucap = `Udah mau siang nih, <span>${nama}</span> udah sarapan?`;
     text.innerHTML = ucap;
   }
   if (h >= 12 && h < 15) {
