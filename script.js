@@ -18,20 +18,16 @@ function clock() {
   if (h < 10) {
     const ucap = `Selamat Pagi <span>${nama}</span>, Semoga harimu menyenangkan!`;
     text.innerHTML = ucap;
-  }
-  if (h >= 10 && h < 12) {
+  } else if (h >= 10 && h < 12) {
     const ucap = `Udah mau siang nih, <span>${nama}</span> udah sarapan?`;
     text.innerHTML = ucap;
-  }
-  if (h >= 12 && h < 15) {
+  } else if (h >= 12 && h < 15) {
     const ucap = `Siang, Cieee <span>${nama}</span> lagi istirahat ya?`;
     text.innerHTML = ucap;
-  }
-  if (h >= 15 && h < 18) {
+  } else if (h >= 15 && h < 18) {
     const ucap = `Sore sayangku jangan lupa mandi ya 🥰, <span>${nama}</span>`;
     text.innerHTML = ucap;
-  }
-  if (h >= 18 && h <= 24) {
+  } else {
     const ucap = `Malam, <span>${nama}</span> <br/> Jangan lupa istirahat ya :)`;
     text.innerHTML = ucap;
   }
