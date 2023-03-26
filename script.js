@@ -1,3 +1,13 @@
+function debounce(func, delay) {
+  let timer;
+  return function() {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(context, args), delay);
+  };
+}
+
 function clock() {
   const hours = document.querySelector(".hour");
   const minutes = document.querySelector(".minutes");
@@ -32,5 +42,9 @@ function clock() {
     text.innerHTML = ucap;
   }
 }
+
+const item = document.getElementById("item");
+const delayedClock = debounce(clock, 1000);
+item.addEventListener("input", delayedClock);
 
 const interval = setInterval(clock, 1000);
