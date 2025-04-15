@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Click</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to top right, #ffe4e1, #fce4ec);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .love {
+      position: absolute;
+      color: #e91e63;
+      font-size: 24px;
+      animation: pop 1.2s ease-out forwards;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes pop {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-80px) scale(1.8) rotate(15deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const loveMessages = ['❤️', 'I love you', 'muach~', 'you’re mine', 'cutie!', 'kiss~'];
+
+    document.body.addEventListener('click', function(e) {
+      const love = document.createElement('div');
+      love.className = 'love';
+
+      const randomMsg = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+      love.innerText = randomMsg;
+
+      love.style.left = (e.clientX - 10) + 'px';
+      love.style.top = (e.clientY - 20) + 'px';
+      love.style.fontSize = (20 + Math.random() * 20) + 'px';
+      love.style.color = ['#e91e63', '#d81b60', '#ad1457'][Math.floor(Math.random() * 3)];
+
+      document.body.appendChild(love);
+
+      setTimeout(() => {
+        love.remove();
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
