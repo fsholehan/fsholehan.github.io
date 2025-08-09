@@ -2,25 +2,28 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blogger Iframe Generator</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
 
-<div class="bg-white shadow-lg rounded-xl p-8 max-w-lg w-full">
-  <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">🎬 Blogger Video Iframe Generator</h2>
+<div class="bg-white shadow-lg rounded-xl p-6 w-full max-w-md">
+  <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 text-center">
+    🎬 Blogger Video Iframe Generator
+  </h2>
   
   <label for="token" class="block text-gray-700 font-semibold mb-1">Masukkan Token Blogger:</label>
   <input 
     type="text" 
     id="token" 
     placeholder="Tempel token di sini..." 
-    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 text-sm sm:text-base"
   >
 
   <button 
     onclick="generateIframe()" 
-    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition mb-3">
+    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition mb-3 text-sm sm:text-base">
     Generate Iframe
   </button>
 
@@ -28,12 +31,12 @@
   <textarea 
     id="result" 
     readonly 
-    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none h-48 mb-3"
+    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none h-40 sm:h-48 mb-3 text-xs sm:text-sm"
   ></textarea>
 
   <button 
     onclick="copyIframe()" 
-    class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition">
+    class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition text-sm sm:text-base">
     📋 Copy ke Clipboard
   </button>
 </div>
@@ -63,9 +66,10 @@ function copyIframe() {
     return;
   }
   textarea.select();
-  textarea.setSelectionRange(0, 99999); // Untuk mobile
-  document.execCommand("copy");
-  alert("✅ Kode iframe berhasil dicopy!");
+  textarea.setSelectionRange(0, 99999); // Mobile-friendly
+  navigator.clipboard.writeText(textarea.value)
+    .then(() => alert("✅ Kode iframe berhasil dicopy!"))
+    .catch(() => alert("❌ Gagal copy. Coba manual."));
 }
 </script>
 
