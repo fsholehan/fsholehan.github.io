@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yonko United vs Anti Wo — Countdown 10:00</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-slate-100 flex items-center justify-center p-6">
+  <div class="w-full max-w-2xl">
+    <div class="text-center mb-6">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Yonko United <span class="text-amber-400">vs</span> Anti Wo</h1>
+      <p class="text-slate-300 mt-2">Kick-off jam <span class="font-semibold">10:00</span> (waktu lokal perangkatmu)</p>
+    </div>
+
+    <!-- Teams preview -->
+    <div class="flex items-center justify-between gap-4 mb-6">
+      <div class="flex-1 rounded-2xl bg-slate-800/60 border border-white/10 p-4 text-center shadow-lg">
+        <div class="text-sm text-slate-400 uppercase tracking-wider">Home</div>
+        <div class="text-xl font-bold mt-2">Yonko United</div>
+        <div class="text-xs text-slate-400 mt-1">Stadion: Konami</div>
+      </div>
+      <div class="w-16 text-center"> 
+        <div class="text-2xl font-extrabold text-amber-400">VS</div>
+      </div>
+      <div class="flex-1 rounded-2xl bg-slate-800/60 border border-white/10 p-4 text-center shadow-lg">
+        <div class="text-sm text-slate-400 uppercase tracking-wider">Away</div>
+        <div class="text-xl font-bold mt-2">Anti Wo</div>
+        <div class="text-xs text-slate-400 mt-1">Stadion: Konami</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="rounded-2xl bg-slate-800/60 border border-white/10 p-5 text-center shadow-lg">
+        <div id="days" class="text-4xl md:text-5xl font-extrabold tabular-nums">0</div>
+        <div class="mt-1 text-slate-300 text-sm uppercase tracking-wider">Hari</div>
+      </div>
+      <div class="rounded-2xl bg-slate-800/60 border border-white/10 p-5 text-center shadow-lg">
+        <div id="hours" class="text-4xl md:text-5xl font-extrabold tabular-nums">0</div>
+        <div class="mt-1 text-slate-300 text-sm uppercase tracking-wider">Jam</div>
+      </div>
+      <div class="rounded-2xl bg-slate-800/60 border border-white/10 p-5 text-center shadow-lg">
+        <div id="minutes" class="text-4xl md:text-5xl font-extrabold tabular-nums">0</div>
+        <div class="mt-1 text-slate-300 text-sm uppercase tracking-wider">Menit</div>
+      </div>
+      <div class="rounded-2xl bg-slate-800/60 border border-white/10 p-5 text-center shadow-lg">
+        <div id="seconds" class="text-4xl md:text-5xl font-extrabold tabular-nums">0</div>
+        <div class="mt-1 text-slate-300 text-sm uppercase tracking-wider">Detik</div>
+      </div>
+    </div>
+
+    <div class="rounded-2xl bg-slate-800/60 border border-white/10 p-5 shadow-lg">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="text-slate-300">Kick-off berikutnya:</p>
+          <p id="targetTime" class="text-lg md:text-xl font-semibold mt-1"></p>
+        </div>
+        <!--<button id="restartBtn" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 transition">Reset ke 10:00 besok</button>-->
+      </div>
+      <p id="statusMsg" class="mt-3 text-emerald-400 hidden">Pertandingan dimulai! 🔔</p>
+    </div>
+
+    <p class="text-center text-xs text-slate-400 mt-6">Catatan: Countdown otomatis mengarah ke 10:00 terdekat (hari ini jika belum lewat, atau besok jika sudah lewat).</p>
+  </div>
+
+  <script>
+    // Dapatkan 10:00 terdekat di timezone perangkat user
+    function getNextTenAM(baseDate = new Date()) {
+      const d = new Date(baseDate);
+      const next = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 10, 0, 0, 0); // 10:00 hari ini
+      if (d.getTime() >= next.getTime()) {
+        // jika sudah lewat, set besok 10:00
+        next.setDate(next.getDate() + 1);
+      }
+      return next;
+    }
+
+    const elDays = document.getElementById('days');
+    const elHours = document.getElementById('hours');
+    const elMinutes = document.getElementById('minutes');
+    const elSeconds = document.getElementById('seconds');
+    const elTarget = document.getElementById('targetTime');
+    const elStatus = document.getElementById('statusMsg');
+    const btnRestart = document.getElementById('restartBtn');
+
+    let target = getNextTenAM();
+
+    function fmtDate(d) {
+      // Tampilkan tanggal dalam format lokal Indonesia
+      return d.toLocaleString(undefined, {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+        hour: '2-digit', minute: '2-digit', hour12: false
+      });
+    }
+
+    function updateTargetText() {
+      elTarget.textContent = fmtDate(target);
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = target.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        elDays.textContent = '0';
+        elHours.textContent = '0';
+        elMinutes.textContent = '0';
+        elSeconds.textContent = '0';
+        elStatus.classList.remove('hidden');
+        return; // hentikan angka negatif, biar nunggu manual reset
+      }
+
+      const sec = Math.floor(diff / 1000);
+      const days = Math.floor(sec / 86400);
+      const hours = Math.floor((sec % 86400) / 3600);
+      const mins = Math.floor((sec % 3600) / 60);
+      const secs = sec % 60;
+
+      elDays.textContent = String(days);
+      elHours.textContent = String(hours).padStart(2, '0');
+      elMinutes.textContent = String(mins).padStart(2, '0');
+      elSeconds.textContent = String(secs).padStart(2, '0');
+    }
+
+    // interval updater per detik
+    updateTargetText();
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
+
+    // tombol untuk memaksa reset ke besok 10:00
+    btnRestart.addEventListener('click', () => {
+      const now = new Date();
+      target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 10, 0, 0, 0);
+      elStatus.classList.add('hidden');
+      updateTargetText();
+      updateCountdown();
+    });
+  </script>
+</body>
+</html>
