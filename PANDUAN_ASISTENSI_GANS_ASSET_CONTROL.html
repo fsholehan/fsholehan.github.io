@@ -6,7 +6,7 @@
 <style>
   @page {
     size: A4;
-    margin: 20mm 15mm 20mm 15mm;
+    margin: 18mm 15mm 18mm 15mm;
     @bottom-right {
       content: counter(page);
     }
@@ -16,26 +16,26 @@
     line-height: 1.6;
     color: #2d3748;
     background-color: #ffffff;
-    font-size: 11pt;
+    font-size: 10.5pt;
     padding: 0;
     margin: 0;
   }
   .header-container {
     text-align: center;
     border-bottom: 3px solid #2b6cb0;
-    padding-bottom: 15px;
-    margin-bottom: 25px;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
   }
   h1 {
     color: #1a365d;
-    font-size: 22pt;
-    margin-bottom: 5px;
+    font-size: 20pt;
+    margin-bottom: 4px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
   .subtitle {
     color: #4a5568;
-    font-size: 12pt;
+    font-size: 11.5pt;
     font-weight: 600;
   }
   .badge {
@@ -43,33 +43,35 @@
     background: #ebf8ff;
     color: #2b6cb0;
     border: 1px solid #bee3f8;
-    padding: 4px 12px;
+    padding: 3px 10px;
     border-radius: 12px;
-    font-size: 9pt;
+    font-size: 8.5pt;
     font-weight: bold;
-    margin-top: 8px;
+    margin-top: 6px;
   }
   h2 {
     color: #2b6cb0;
     border-left: 5px solid #3182ce;
     padding-left: 10px;
-    font-size: 14pt;
+    font-size: 13.5pt;
     margin-top: 25px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
   h3 {
     color: #2d3748;
-    font-size: 12pt;
+    font-size: 11.5pt;
     margin-top: 15px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    border-bottom: 1px dashed #cbd5e0;
+    padding-bottom: 3px;
   }
   .alert-box {
     background-color: #ebf8ff;
     border-left: 4px solid #3182ce;
-    padding: 12px 15px;
+    padding: 10px 14px;
     border-radius: 4px;
-    margin: 15px 0;
-    font-size: 10.5pt;
+    margin: 12px 0;
+    font-size: 10pt;
   }
   .alert-important {
     background-color: #fefcbf;
@@ -78,12 +80,12 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 15px 0;
-    font-size: 10pt;
+    margin: 12px 0;
+    font-size: 9.5pt;
   }
   th, td {
     border: 1px solid #cbd5e0;
-    padding: 8px 10px;
+    padding: 7px 9px;
     text-align: left;
   }
   th {
@@ -97,20 +99,21 @@
   pre {
     background-color: #1a202c;
     color: #edf2f7;
-    padding: 12px;
+    padding: 10px 12px;
     border-radius: 6px;
     font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 9.5pt;
+    font-size: 9pt;
     overflow-x: auto;
-    margin: 10px 0;
+    margin: 8px 0;
+    line-height: 1.4;
   }
   code {
     font-family: 'Consolas', 'Courier New', monospace;
     background-color: #edf2f7;
     color: #c53030;
-    padding: 2px 4px;
+    padding: 1px 4px;
     border-radius: 3px;
-    font-size: 9.5pt;
+    font-size: 9pt;
   }
   pre code {
     background-color: transparent;
@@ -121,32 +124,32 @@
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 6px;
-    padding: 12px 16px;
-    margin-bottom: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
   .qna-question {
     font-weight: bold;
     color: #c53030;
-    margin-bottom: 6px;
-    font-size: 10.5pt;
+    margin-bottom: 4px;
+    font-size: 10pt;
   }
   .qna-answer {
     color: #2d3748;
-    font-size: 10pt;
-    line-height: 1.5;
+    font-size: 9.5pt;
+    line-height: 1.45;
   }
   .print-btn-bar {
     position: sticky;
     top: 0;
     background: #2b6cb0;
     color: white;
-    padding: 12px 20px;
+    padding: 10px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 6px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
   .btn-print {
@@ -154,11 +157,10 @@
     color: #2b6cb0;
     font-weight: bold;
     border: none;
-    padding: 8px 18px;
+    padding: 6px 16px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 10.5pt;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 10pt;
   }
   .btn-print:hover {
     background: #f7fafc;
@@ -168,7 +170,7 @@
       display: none;
     }
     body {
-      font-size: 10pt;
+      font-size: 9.5pt;
     }
     h2 {
       page-break-after: avoid;
@@ -193,7 +195,7 @@
 </div>
 
 <div class="alert-box">
-  <strong>Pesan Santai untuk Kamu:</strong> Jangan minder walau kamu belum punya pengalaman koding sama sekali! Pemrograman itu persis seperti kehidupan sehari-hari: ada lemari arsip untuk simpan data, ada kertas formulir yang diisi staf, ada satpam yang memeriksa izin masuk, dan ada juru hitung yang merekap angka. Panduan ini dirancang memakai analogi sederhana agar kamu paham cara kerjanya dan siap menjawab pertanyaan dosen dengan tenang.
+  <strong>Pesan Santai untuk Kamu:</strong> Jangan minder walau kamu belum punya pengalaman koding sama sekali! Pemrograman itu persis seperti kehidupan sehari-hari: ada lemari arsip untuk simpan data, ada formulir yang diisi staf, ada satpam yang memeriksa izin masuk (<code>permissions.py</code>), ada koki pemroses aksi (<code>views.py</code>), ada peta denah jalan (<code>urls.py</code>), ada kamus format (<code>utils.py</code>), dan ada juri pemeriksa kualitas (<code>tests.py</code>). Panduan ini dirancang memakai analogi sederhana agar kamu paham cara kerjanya dan siap menjawab pertanyaan dosen dengan tenang.
 </div>
 
 <h2>BAB 1: GAMBARAN BESAR APLIKASI (BIG PICTURE)</h2>
@@ -260,6 +262,16 @@
       <td><strong>Papan Penunjuk Jalan / Daftar Menu.</strong></td>
       <td>Mengarahkan alamat: kalau pengguna klik <code>/aset/</code>, antarkan ke koki pembuat daftar aset.</td>
     </tr>
+    <tr>
+      <td><strong>Decorator / Permission</strong></td>
+      <td><strong>Satpam di Pintu Masuk VIP.</strong></td>
+      <td>Memeriksa apakah orang yang mau masuk punya tiket/kartu akses yang sah (Owner/Admin/Akuntan).</td>
+    </tr>
+    <tr>
+      <td><strong>Unit Test (<code>tests.py</code>)</strong></td>
+      <td><strong>Uji Kelayakan / Uji Tabrak Produk.</strong></td>
+      <td>Program simulasi robotik yang menguji apakah semua fitur bekerja benar tanpa harus diklik manual satu per satu.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -267,64 +279,141 @@
 <ul>
   <li><code>manage.py</code>: Saklar kendali utama di terminal untuk menghidupkan server web dan memperbarui database.</li>
   <li><code>config/settings.py</code>: Buku aturan utama aplikasi (pengaturan zona waktu Indonesia, modul aktif, dan keamanan).</li>
-  <li><code>accounts/models.py</code>: Mengatur daftar pengguna dan membagi 3 jabatan: <strong>Owner</strong> (Pemilik), <strong>Admin</strong> (Staf Operasional), dan <strong>Akuntan</strong> (Ahli Keuangan).</li>
+  <li><code>accounts/models.py</code>: Mengatur daftar pengguna dan membagi 3 jabatan: <strong>Owner</strong>, <strong>Admin</strong>, dan <strong>Akuntan</strong>.</li>
   <li><code>assets/models.py</code>: Lemari arsip inti tempat formulir data aset, lokasi, kategori, riwayat servis, dan catatan jurnal disimpan.</li>
-  <li><code>assets/views.py</code>: Otak pemroses aksi web (misalnya memeriksa apakah user boleh menyetujui barang atau memfilter pencarian).</li>
+  <li><code>assets/permissions.py</code>: <strong>Satpam Penjaga Pintu.</strong> Membatasi halaman tertentu hanya bisa dibuka oleh peran yang berhak.</li>
+  <li><code>assets/urls.py</code>: <strong>Papan Petunjuk Arah.</strong> Menghubungkan alamat web di browser ke fungsi pengolah di kodingan.</li>
+  <li><code>assets/views.py</code>: <strong>Koki Utama Sistem.</strong> Menangani semua aksi tombol: tambah aset, setujui verifikasi, filter pencarian, dan cetak QR.</li>
+  <li><code>assets/utils.py</code>: <strong>Alat Bantu / Kamus Kecil.</strong> Menerjemahkan angka bulan komputer menjadi nama bulan Indonesia ("Januari", "Februari").</li>
+  <li><code>assets/tests.py</code>: <strong>Juri Uji Mutu Otomatis.</strong> Memastikan fitur impor Excel, penyusutan, dan jurnal tidak pernah rusak saat kodingan diubah.</li>
   <li><code>assets/services/depreciation.py</code>: Mesin hitung rumus matematika penyusutan nilai barang bulanan.</li>
   <li><code>assets/services/journals.py</code>: Juru tulis akuntansi otomatis (memastikan pencatatan Debet dan Kredit selalu seimbang).</li>
 </ul>
 
 <h2>BAB 4: BEDAH KODE BAGIAN DEMI BAGIAN (LINE-BY-LINE)</h2>
 
-<h3>4.1 Pembagian Peran Pengguna (<code>accounts/models.py</code>)</h3>
-<pre><code>class User(AbstractUser):
-    class Role(models.TextChoices):
-        OWNER = "owner", "Owner"
-        ADMIN = "admin", "Admin"
-        ACCOUNTANT = "accountant", "Akuntan"
-
-    role = models.CharField(max_length=20, choices=Role.choices, default=Role.ADMIN)
+<h3>4.1 Satpam Hak Akses Halaman (<code>assets/permissions.py</code>)</h3>
+<pre><code>def role_required(*roles):
+    def decorate(view_func):
+        @wraps(view_func)
+        @login_required
+        def wrapped(request, *args, **kwargs):
+            user = request.user
+            if user.is_superuser or user.role in roles:
+                return view_func(request, *args, **kwargs)
+            raise PermissionDenied
+        return wrapped
+    return decorate
 </code></pre>
-<p><strong>Bagian ini tugasnya apa?</strong> Memberikan kartu tanda pengenal (peran jabatan) untuk setiap orang yang login ke dalam sistem.<br>
-<strong>Caranya bagaimana?</strong> <code>AbstractUser</code> adalah kartu pengenal standar bawaan Django (sudah punya username dan password). Kita tambahkan satu kolom baru bernama <code>role</code> dengan 3 pilihan pasti: Owner, Admin, atau Akuntan. Standarnya (<code>default</code>), pengguna baru dianggap staf Admin biasa.</p>
+<p><strong>Bagian ini tugasnya apa?</strong> Menjadi satpam di depan pintu setiap halaman web agar orang yang tidak punya wewenang langsung dicegah masuk.<br>
+<strong>Caranya bagaimana?</strong> 
+Fungsi ini disebut <em>Decorator</em> (pelindung). Saat sebuah halaman ditempeli label <code>@role_required("admin", "owner")</code>, satpam ini akan mengecek:
+1. Apakah pengguna sudah login? (<code>@login_required</code>). Kalau belum, disuruh login dulu.
+2. Apakah pengguna adalah Superuser atau memiliki jabatan yang diizinkan? Jika YA, pintu dibuka (halaman tampil).
+3. Jika TIDAK (misal kasir biasa ingin menyetujui jurnal akuntansi), satpam langsung melempar pesan penolakan: <code>raise PermissionDenied</code> (Error 403: Dilarang Masuk).</p>
 
-<h3>4.2 Perlindungan Formulir Aset (<code>assets/models.py</code>)</h3>
-<pre><code>class Asset(models.Model):
-    asset_code = models.CharField(max_length=50, unique=True)
-    name = models.CharField(max_length=200)
-    category = models.ForeignKey(AssetCategory, on_delete=models.PROTECT, related_name="assets")
-    location = models.ForeignKey(Location, on_delete=models.PROTECT, related_name="assets")
-    acquisition_cost = models.DecimalField(max_digits=16, decimal_places=2, validators=[MinValueValidator(0)])
-    status = models.CharField(max_length=20, choices=Status.choices, default=Status.DRAFT)
+<h3>4.2 Papan Petunjuk Rute Alamat (<code>assets/urls.py</code>)</h3>
+<pre><code>urlpatterns = [
+    path("", views.dashboard, name="dashboard"),
+    path("aset/", views.asset_list, name="asset_list"),
+    path("aset/input-cepat/", views.asset_quick_create, name="asset_quick_create"),
+    path("aset/verifikasi/", views.asset_verification, name="asset_verification"),
+    path("aset/&lt;int:pk&gt;/qr/", views.asset_qr, name="asset_qr"),
+    path("penyusutan/", views.depreciation_list, name="depreciation_list"),
+    path("penyusutan/&lt;int:pk&gt;/posting/", views.depreciation_post, name="depreciation_post"),
+]
 </code></pre>
-<p><strong>Bagian ini tugasnya apa?</strong> Menjaga agar data barang aman dan tidak bisa dihapus sembarangan secara tidak sengaja.<br>
-<strong>Caranya bagaimana?</strong> Perhatikan perintah <code>on_delete=models.PROTECT</code>. Artinya: jika ada staf yang tidak sengaja ingin menghapus kategori "Peralatan Bar", sistem akan menolak karena masih ada mesin espresso yang terhubung di bawah kategori itu. Selain itu, harga beli dilindungi <code>MinValueValidator(0)</code> agar tidak ada angka minus.</p>
+<p><strong>Bagian ini tugasnya apa?</strong> Menjadi resepsionis atau papan denah yang memetakan alamat yang diketik di browser ke koki pemroses di <code>views.py</code>.<br>
+<strong>Caranya bagaimana?</strong> 
+* <code>path("", views.dashboard, name="dashboard")</code>: Jika alamatnya kosong (halaman utama <code>http://127.0.0.1:8000/</code>), panggil koki <code>views.dashboard</code>.
+* <code>path("aset/&lt;int:pk&gt;/qr/", views.asset_qr, ...)</code>: Perhatikan tanda <code>&lt;int:pk&gt;</code>. <code>pk</code> singkatan dari <em>Primary Key</em> (Nomor ID unik aset). Jika pengguna membuka <code>/aset/12/qr/</code>, sistem tahu bahwa yang diminta adalah QR Code untuk barang dengan ID nomor 12!
+* Parameter <code>name="..."</code> berguna sebagai nama panggilan cepat di kodingan, jadi jika suatu saat alamat link diubah, kita tidak perlu mengganti semua tombol di file HTML.</p>
 
-<h3>4.3 Filter Angka di Dashboard (<code>assets/views.py</code>)</h3>
-<pre><code>@login_required
-def dashboard(request):
-    assets = Asset.objects.all()
-    active_assets = assets.filter(status=Asset.Status.ACTIVE)
-    total_cost = active_assets.aggregate(total=Sum("acquisition_cost"))["total"] or Decimal("0")
-    plan_total = ProcurementPlanLine.objects.aggregate(total=Sum("total_cost"))["total"] or Decimal("0")
+<h3>4.3 Koki Utama Pemroses Halaman (<code>assets/views.py</code>)</h3>
+<pre><code>@role_required("admin", "owner")
+@transaction.atomic
+def asset_quick_create(request):
+    if request.method == "POST":
+        form = QuickAssetForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            asset = Asset.objects.create(
+                asset_code=next_asset_code(data["location"]),
+                name=data["name"], category=data["category"], location=data["location"],
+                status=Asset.Status.PENDING_REVIEW,
+                acquisition_date=data["acquisition_date"],
+                acquisition_cost=data["acquisition_cost"],
+                residual_value=data["category"].default_residual_value,
+                useful_life_months=data["category"].default_useful_life_months,
+                created_by=request.user,
+            )
+            record_audit(request.user, "asset", asset.pk, "quick_created_pending_review")
+            messages.success(request, f"{asset.name} dikirim ke antrean verifikasi.")
+            return redirect("asset_verification")
 </code></pre>
-<p><strong>Bagian ini tugasnya apa?</strong> Menjadi juru hitung ringkasan data saat pengguna pertama kali membuka dashboard utama.<br>
-<strong>Caranya bagaimana?</strong> Baris <code>filter(status=Asset.Status.ACTIVE)</code> memastikan bahwa total nilai kekayaan yang dijumlahkan <strong>hanya dari barang yang sudah sah aktif</strong>. Nilai rencana pengadaan (<code>plan_total</code>) dihitung di tempat terpisah sehingga tidak tercampur dengan aset riil.</p>
+<p><strong>Bagian ini tugasnya apa?</strong> Mengurus formulir "Input Cepat" saat staf kafe baru saja menerima barang fisik di lapangan.<br>
+<strong>Caranya bagaimana?</strong> 
+1. Dilindungi <code>@role_required("admin", "owner")</code>: Hanya Admin dan Owner yang boleh menginput.
+2. <code>if request.method == "POST"</code>: Memeriksa apakah staf baru membuka halaman kosong (GET) atau sudah menekan tombol "Simpan" (POST).
+3. <code>next_asset_code(data["location"])</code>: Otomatis membuatkan kode aset rapi sesuai lokasi (misal: <code>BAR-0001</code>).
+4. Status awal disetel ke <code>PENDING_REVIEW</code> agar tidak langsung masuk neraca keuangan.
+5. <code>record_audit(...)</code>: Mencatat jejak digital di buku log audit: siapa yang menginput, barang apa, dan tanggal berapa.</p>
 
-<h3>4.4 Pengaman Penyusutan Bulanan (<code>assets/services/depreciation.py</code>)</h3>
-<pre><code>@transaction.atomic
-def create_depreciation_run(period, user):
-    period = period.replace(day=1)
-    current_month = timezone.localdate().replace(day=1)
-    if period > current_month:
-        raise ValidationError("Periode penyusutan tidak boleh berada di masa depan.")
-    if DepreciationRun.objects.filter(period=period).exists():
-        raise ValidationError("Periode ini sudah memiliki proses penyusutan.")
+<h3>4.4 Kamus Format Tanggal Bahasa Indonesia (<code>assets/utils.py</code>)</h3>
+<pre><code>INDONESIAN_MONTHS = (
+    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+    "Juli", "Agustus", "September", "Oktober", "November", "Desember",
+)
+
+def format_indonesian_month(value, abbreviated=False):
+    months = INDONESIAN_SHORT_MONTHS if abbreviated else INDONESIAN_MONTHS
+    return f"{months[value.month - 1]} {value.year}"
 </code></pre>
-<p><strong>Bagian ini tugasnya apa?</strong> Mencegah salah hitung akuntansi yang bisa merusak laporan keuangan bulanan.<br>
-<strong>Caranya bagaimana?</strong> Simbol <code>@transaction.atomic</code> bekerja seperti prinsip <em>"Semua atau Batal Total"</em>. Jika sistem sedang memproses 100 barang lalu di tengah jalan terjadi error pada barang ke-40, sistem langsung membatalkan seluruh operasi dari awal agar data tidak pincang. Perintah berikutnya memastikan satu bulan tidak boleh disusutkan 2 kali.</p>
+<p><strong>Bagian ini tugasnya apa?</strong> Menerjemahkan angka bulan komputer menjadi tulisan nama bulan yang ramah dibaca manusia Indonesia.<br>
+<strong>Caranya bagaimana?</strong> 
+Komputer menyimpan tanggal dalam bentuk angka (misalnya bulan ke-3 tahun 2026). Komputer biasanya menggunakan bahasa Inggris ("March"). Fungsi kecil ini mengambil angka bulan (3), menguranginya dengan 1 (karena urutan daftar di Python mulai dari angka 0), lalu mengambil kata di posisi tersebut yaitu <code>"Maret"</code> dan menggabungkannya dengan tahun sehingga tampil cantik: <strong>"Maret 2026"</strong>.</p>
+
+<h3>4.5 Juri Uji Mutu Otomatis (<code>assets/tests.py</code>)</h3>
+<pre><code>class WorkbookImportTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="admin", role="admin")
+
+    def test_plan_and_existing_asset_on_same_sheet_row_are_preserved_separately(self):
+        # Membuat file simulasi Excel di memori
+        workbook = Workbook()
+        ws = workbook.active
+        ws.append(["Blender baru", 1, 300000, 300000, None, None, "Mixer lama", 1, None, "30 WATT", 200000])
+        ...
+        batch = import_workbook(upload, self.user)
+
+        self.assertEqual(batch.rows.count(), 2)
+        self.assertFalse(Asset.objects.exists(), "Impor tidak boleh otomatis jadi aset tetap!")
+</code></pre>
+<p><strong>Bagian ini tugasnya apa?</strong> Menguji seluruh logika sistem secara otomatis untuk memastikan tidak ada kecacatan program.<br>
+<strong>Caranya bagaimana?</strong> 
+File ini berisi robot penguji. Misalnya fungsi <code>test_plan_and_existing_asset...</code>: robot ini pura-pura membuat file Excel, mengunggahnya ke program, lalu mengecek apakah baris belanjaan terpisah dengan benar. Perintah <code>self.assertFalse(Asset.objects.exists())</code> adalah ujian tegas: <em>"Buktikan bahwa data yang baru diimpor dari Excel TIDAK langsung menjadi aset aktif!"</em>. Jika aturan dilanggar, tes akan berbunyi merah (Gagal).</p>
 
 <h2>BAB 5: SIMULASI PERTANYAAN DOSEN & JAWABAN SIAP PAKAI</h2>
+
+<div class="qna-card">
+  <div class="qna-question">Dosen: "Bagaimana cara sistem kamu mengamankan halaman web agar staf kasir tidak bisa mengakses menu persetujuan atau jurnal?"</div>
+  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. Kami membuat modul keamanan khusus di file <code>permissions.py</code> bernama <code>role_required</code>. Fungsi ini bekerja sebagai dekorator pelindung. Ketika sebuah halaman didekorasi dengan <code>@role_required('owner', 'accountant')</code>, sistem akan memeriksa identitas pengguna saat itu. Jika perannya tidak cocok, sistem langsung memblokir akses dan mengeluarkan exception <code>PermissionDenied</code> (HTTP 403 Forbidden)."</em></div>
+</div>
+
+<div class="qna-card">
+  <div class="qna-question">Dosen: "Di file urls.py ada sintaks seperti &lt;int:pk&gt;. Apa artinya itu dan apa fungsinya?"</div>
+  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. <code>&lt;int:pk&gt;</code> adalah URL Path Converter dinamis. <code>int</code> artinya parameter harus berupa angka bulat, dan <code>pk</code> adalah singkatan dari Primary Key (ID unik data di database). Fungsinya agar satu rute URL bisa menangani data spesifik secara fleksibel. Misalnya jika membuka <code>/aset/5/qr/</code>, sistem otomatis tahu bahwa koki di <code>views.py</code> harus membuatkan gambar QR Code untuk barang yang ID-nya nomor 5."</em></div>
+</div>
+
+<div class="qna-card">
+  <div class="qna-question">Dosen: "Apa perbedaan peran antara file views.py dan utils.py?"</div>
+  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. <code>views.py</code> adalah pengendali utama alur bisnis aplikasi: ia menerima permintaan HTTP dari pengguna, memvalidasi formulir, memanggil database, dan menentukan halaman HTML mana yang dirender. Sedangkan <code>utils.py</code> adalah kumpulan fungsi pembantu kecil yang independen dan sering dipakai berulang-ulang, contohnya fungsi pemformat nama bulan Indonesia agar teks laporan seragam."</em></div>
+</div>
+
+<div class="qna-card">
+  <div class="qna-question">Dosen: "Kenapa proyek ini perlu ada file tests.py? Apakah aplikasinya tidak cukup dites manual dengan diklik-klik saja di browser?"</div>
+  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. Tes manual dengan klik di browser rawan terlewat (human error) dan memakan waktu lama setiap kali ada perubahan kode. File <code>tests.py</code> berisi Unit Test otomatis menggunakan framework pengujian bawaan Django. Cukup ketik perintah <code>python manage.py test assets</code>, komputer akan mengeksekusi puluhan skenario uji—seperti validasi impor Excel, jurnal berimbang, dan rumus penyusutan—hanya dalam hitungan detik untuk membuktikan bahwa tidak ada fungsi yang rusak."</em></div>
+</div>
 
 <div class="qna-card">
   <div class="qna-question">Dosen: "Kenapa data Rencana Pengadaan (Procurement Plan) dan Aset Aktif harus dipisah di tabel berbeda?"</div>
@@ -341,40 +430,17 @@ def create_depreciation_run(period, user):
   <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. Dalam akuntansi, pencatatan Debet dan Kredit harus mutlak berimbang. @transaction.atomic memastikan sifat 'all-or-nothing'. Jika terjadi gangguan koneksi atau server mati saat mencatat sisi kredit, sistem otomatis membatalkan (rollback) sisi debet. Sehingga tidak akan pernah ada jurnal yang pincang atau data korup di database."</em></div>
 </div>
 
-<div class="qna-card">
-  <div class="qna-question">Dosen: "Bagaimana alur kerja fitur QR Code di aplikasi ini?"</div>
-  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. Aplikasi menggunakan pustaka Python 'qrcode'. Setiap kali aset disetujui, sistem membaca ID unik dan kode barang, lalu menggambar file gambar QR Code secara langsung. QR Code ini bisa dicetak dan ditempelkan pada fisik barang. Saat staf melakukan stock opname (pemeriksaan fisik), barcode dipindai untuk membuka detail data aset tersebut."</em></div>
-</div>
-
-<div class="qna-card">
-  <div class="qna-question">Dosen: "Metode penyusutan apa yang digunakan dan bagaimana perhitungannya?"</div>
-  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Metode utamanya adalah Garis Lurus (Straight Line), Pak/Bu. Rumusnya: Nilai Perolehan dikurangi Nilai Residu (sisa), kemudian dibagi Umur Manfaat dalam bulan. Nilai tersebut dipotongkan secara rata setiap bulannya dari nilai buku barang."</em></div>
-</div>
-
-<div class="qna-card">
-  <div class="qna-question">Dosen: "Jika aplikasi ini mau di-deploy ke internet untuk umum, apa saja penyesuaiannya?"</div>
-  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Ada tiga hal utama Pak/Bu: Pertama, mengganti database SQLite dengan database server seperti PostgreSQL. Kedua, mematikan mode DEBUG (DEBUG = False) dan mengamankan SECRET_KEY. Ketiga, menggunakan web server produksi seperti Gunicorn dan Nginx dengan enkripsi HTTPS."</em></div>
-</div>
-
 <h2>BAB 6: KOTAK RINGKASAN CEPAT (CHEAT SHEET SIAP UJIAN)</h2>
 <div class="alert-box alert-important">
   <strong>Rangkuman 3 Menit Sebelum Masuk Ruang Ujian/Asistensi:</strong>
   <ul>
-    <li><strong>Nama Proyek:</strong> GANS Asset Control (Pengendalian Aset Gan's Cafe & Burjo).</li>
-    <li><strong>Teknologi:</strong> Python 3.13, Django 5.2, Database SQLite, OpenPyXL (Excel), QRCode.</li>
-    <li><strong>3 Peran Akun:</strong>
-      <ul>
-        <li><strong>Owner:</strong> Pemilik (persetujuan akhir transaksi penting dan rekap total).</li>
-        <li><strong>Admin:</strong> Staf operasional (input barang cepat, catat servis, stock opname).</li>
-        <li><strong>Akuntan:</strong> Keuangan (menyetujui penyusutan, posting jurnal debet/kredit).</li>
-      </ul>
-    </li>
-    <li><strong>3 Keunggulan Utama:</strong> Pemisahan rencana vs riil, jurnal akuntansi otomatis berimbang, dan label QR Code untuk cek fisik barang.</li>
+    <li><strong>Arsitektur Proyek:</strong> MVT (Model - View - Template) Django berbasis Python 3.13 dan SQLite.</li>
+    <li><strong>Pengaman Hak Akses:</strong> <code>permissions.py</code> (Owner, Admin, Akuntan).</li>
+    <li><strong>Alur Rute & Logika:</strong> <code>urls.py</code> mengarahkan link menuju <code>views.py</code> untuk pemrosesan form dan database.</li>
+    <li><strong>Fungsi Pembantu:</strong> <code>utils.py</code> untuk standarisasi format tanggal Indonesia.</li>
+    <li><strong>Penjamin Kualitas:</strong> <code>tests.py</code> untuk uji otomatis logika impor, depresiasi, dan jurnal tanpa klik manual.</li>
   </ul>
 </div>
 
-<script>
-  // Otomatisasi tampilan bila dibuka langsung
-</script>
 </body>
 </html>
