@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Panduan Pemrograman GANS Asset Control</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 15mm 20mm 15mm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #2d3748;
+    background-color: #ffffff;
+    font-size: 11pt;
+    padding: 0;
+    margin: 0;
+  }
+  .header-container {
+    text-align: center;
+    border-bottom: 3px solid #2b6cb0;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+  }
+  h1 {
+    color: #1a365d;
+    font-size: 22pt;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .subtitle {
+    color: #4a5568;
+    font-size: 12pt;
+    font-weight: 600;
+  }
+  .badge {
+    display: inline-block;
+    background: #ebf8ff;
+    color: #2b6cb0;
+    border: 1px solid #bee3f8;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 9pt;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+  h2 {
+    color: #2b6cb0;
+    border-left: 5px solid #3182ce;
+    padding-left: 10px;
+    font-size: 14pt;
+    margin-top: 25px;
+    margin-bottom: 12px;
+  }
+  h3 {
+    color: #2d3748;
+    font-size: 12pt;
+    margin-top: 15px;
+    margin-bottom: 8px;
+  }
+  .alert-box {
+    background-color: #ebf8ff;
+    border-left: 4px solid #3182ce;
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+    font-size: 10.5pt;
+  }
+  .alert-important {
+    background-color: #fefcbf;
+    border-left: 4px solid #d69e2e;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 10pt;
+  }
+  th, td {
+    border: 1px solid #cbd5e0;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #edf2f7;
+    color: #2d3748;
+    font-weight: 600;
+  }
+  tr:nth-child(even) {
+    background-color: #f7fafc;
+  }
+  pre {
+    background-color: #1a202c;
+    color: #edf2f7;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9.5pt;
+    overflow-x: auto;
+    margin: 10px 0;
+  }
+  code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    background-color: #edf2f7;
+    color: #c53030;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 9.5pt;
+  }
+  pre code {
+    background-color: transparent;
+    color: #edf2f7;
+    padding: 0;
+  }
+  .qna-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .qna-question {
+    font-weight: bold;
+    color: #c53030;
+    margin-bottom: 6px;
+    font-size: 10.5pt;
+  }
+  .qna-answer {
+    color: #2d3748;
+    font-size: 10pt;
+    line-height: 1.5;
+  }
+  .print-btn-bar {
+    position: sticky;
+    top: 0;
+    background: #2b6cb0;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  .btn-print {
+    background: #ffffff;
+    color: #2b6cb0;
+    font-weight: bold;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 10.5pt;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .btn-print:hover {
+    background: #f7fafc;
+  }
+  @media print {
+    .print-btn-bar {
+      display: none;
+    }
+    body {
+      font-size: 10pt;
+    }
+    h2 {
+      page-break-after: avoid;
+    }
+    .qna-card, pre, table {
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-btn-bar">
+  <span><strong>Tips Cetak PDF:</strong> Klik tombol di samping atau tekan <code>Ctrl + P</code>, lalu pilih Destination: <strong>Save as PDF</strong>.</span>
+  <button class="btn-print" onclick="window.print()">Simpan / Cetak PDF</button>
+</div>
+
+<div class="header-container">
+  <h1>Panduan & Bedah Kode Proyek: GANS Asset Control</h1>
+  <div class="subtitle">Buku Pegangan Mahasiswa Pemula (Zero-Jargon) untuk Presentasi & Asistensi Dosen</div>
+  <div class="badge">Sistem Informasi Pengendalian Aset Tetap • Gan's Cafe & Burjo</div>
+</div>
+
+<div class="alert-box">
+  <strong>Pesan Santai untuk Kamu:</strong> Jangan minder walau kamu belum punya pengalaman koding sama sekali! Pemrograman itu persis seperti kehidupan sehari-hari: ada lemari arsip untuk simpan data, ada kertas formulir yang diisi staf, ada satpam yang memeriksa izin masuk, dan ada juru hitung yang merekap angka. Panduan ini dirancang memakai analogi sederhana agar kamu paham cara kerjanya dan siap menjawab pertanyaan dosen dengan tenang.
+</div>
+
+<h2>BAB 1: GAMBARAN BESAR APLIKASI (BIG PICTURE)</h2>
+
+<h3>1.1 Program Apa Sebenarnya Ini?</h3>
+<p>Aplikasi ini bernama <strong>GANS Asset Control</strong>, yaitu program pencatat kekayaan dan barang inventaris (aset tetap) untuk bisnis kuliner <strong>Gan’s Cafe & Burjo</strong>.</p>
+
+<h3>1.2 Masalah Nyata Apa yang Diselesaikan?</h3>
+<p>Di kafe dan tempat makan, banyak sekali barang mahal: mesin espresso, kulkas, blender komersial, meja kursi, kompor, dan AC. Masalah yang sering terjadi:</p>
+<ol>
+  <li><strong>Rencana Belanja Tercampur Barang Nyata:</strong> Daftar barang yang baru sebatas <em>niat mau dibeli</em> sering tercatat sebagai aset asli, sehingga nilai kekayaan kafe jadi palsu.</li>
+  <li><strong>Barang Hilang atau Rusak Tanpa Catatan:</strong> Tidak ada yang tahu siapa penanggung jawab barang atau kapan terakhir diservis.</li>
+  <li><strong>Penyusutan Nilai Tidak Dihitung:</strong> Mesin kopi 15 juta setelah dipakai 2 tahun tentu nilainya turun (mengalami penyusutan). Jika tidak dihitung, laporan laba-rugi bisnis jadi kacau.</li>
+</ol>
+<p><strong>Solusi Aplikasi Ini:</strong> Memisahkan jalur rencana belanja vs aset fisik, mewajibkan persetujuan (verifikasi) sebelum barang diakui, membuatkan label QR Code untuk ditempel di fisik barang, serta menghitung penyusutan harga dan jurnal akuntansi otomatis tiap bulan.</p>
+
+<h3>1.3 Alur Kerja Utama Aplikasi</h3>
+<ol>
+  <li><strong>Staf Login:</strong> Masuk sesuai peran akun (Owner, Admin, atau Akuntan).</li>
+  <li><strong>Input Barang:</strong> Staf memasukkan data lewat menu <em>Input Cepat</em> atau impor Excel. Data masuk antrean dengan status <code>Draft</code> atau <code>Menunggu Pemeriksaan</code>.</li>
+  <li><strong>Verifikasi:</strong> Owner atau Akuntan memeriksa data. Jika sudah sesuai, status disetujui menjadi <code>Aktif</code>.</li>
+  <li><strong>Label QR Code:</strong> Sistem membuatkan gambar barcode kotak (QR Code) siap cetak untuk ditempel di mesin atau perabotan kafe.</li>
+  <li><strong>Akhir Bulan:</strong> Akuntan menjalankan modul penyusutan bulanan untuk memotong nilai buku secara adil dan membuat jurnal otomatis.</li>
+  <li><strong>Dashboard & Opname:</strong> Pemilik memantau total aset aktif di layar utama serta mengecek kondisi fisik barang berkala (Stock Opname).</li>
+</ol>
+
+<h2>BAB 2: KAMUS ISTILAH KODING (BAHASA SEHARI-HARI)</h2>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Istilah Teknis</th>
+      <th style="width: 30%;">Analogi Kehidupan Sehari-hari</th>
+      <th>Artinya dalam Aplikasi Ini</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Framework (Django)</strong></td>
+      <td><strong>Pabrik Cetakan Rumah Jadi.</strong> Kita tidak perlu buat semen dan bata dari nol; cetakan fondasi dan atapnya sudah disediakan.</td>
+      <td>Kerangka kerja berbasis bahasa Python agar kita bisa membuat web yang aman, teratur, dan cepat.</td>
+    </tr>
+    <tr>
+      <td><strong>Database (SQLite)</strong></td>
+      <td><strong>Lemari Arsip Digital.</strong></td>
+      <td>Tempat seluruh data barang, akun staf, dan catatan tersimpan di file <code>db.sqlite3</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Model (<code>models.py</code>)</strong></td>
+      <td><strong>Blangko Formulir Kosong.</strong></td>
+      <td>Rancangan tabel: kolom apa saja yang wajib diisi (nama barang, harga beli, lokasi, penanggung jawab).</td>
+    </tr>
+    <tr>
+      <td><strong>View (<code>views.py</code>)</strong></td>
+      <td><strong>Koki di Dapur Restoran.</strong></td>
+      <td>Logika pemroses: menerima pesanan dari pengunjung, mengambil data dari lemari arsip, mengolah hitungan, lalu menyajikannya ke piring tampilan.</td>
+    </tr>
+    <tr>
+      <td><strong>Template (<code>.html</code>)</strong></td>
+      <td><strong>Piring Sajian / Brosur Tampilan.</strong></td>
+      <td>Tampilan visual yang dilihat mata pengguna di layar browser (tombol, warna, tabel data).</td>
+    </tr>
+    <tr>
+      <td><strong>URL (<code>urls.py</code>)</strong></td>
+      <td><strong>Papan Penunjuk Jalan / Daftar Menu.</strong></td>
+      <td>Mengarahkan alamat: kalau pengguna klik <code>/aset/</code>, antarkan ke koki pembuat daftar aset.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>BAB 3: PETA FOLDER & FUNGSI FILE UTAMA</h2>
+<ul>
+  <li><code>manage.py</code>: Saklar kendali utama di terminal untuk menghidupkan server web dan memperbarui database.</li>
+  <li><code>config/settings.py</code>: Buku aturan utama aplikasi (pengaturan zona waktu Indonesia, modul aktif, dan keamanan).</li>
+  <li><code>accounts/models.py</code>: Mengatur daftar pengguna dan membagi 3 jabatan: <strong>Owner</strong> (Pemilik), <strong>Admin</strong> (Staf Operasional), dan <strong>Akuntan</strong> (Ahli Keuangan).</li>
+  <li><code>assets/models.py</code>: Lemari arsip inti tempat formulir data aset, lokasi, kategori, riwayat servis, dan catatan jurnal disimpan.</li>
+  <li><code>assets/views.py</code>: Otak pemroses aksi web (misalnya memeriksa apakah user boleh menyetujui barang atau memfilter pencarian).</li>
+  <li><code>assets/services/depreciation.py</code>: Mesin hitung rumus matematika penyusutan nilai barang bulanan.</li>
+  <li><code>assets/services/journals.py</code>: Juru tulis akuntansi otomatis (memastikan pencatatan Debet dan Kredit selalu seimbang).</li>
+</ul>
+
+<h2>BAB 4: BEDAH KODE BAGIAN DEMI BAGIAN (LINE-BY-LINE)</h2>
+
+<h3>4.1 Pembagian Peran Pengguna (<code>accounts/models.py</code>)</h3>
+<pre><code>class User(AbstractUser):
+    class Role(models.TextChoices):
+        OWNER = "owner", "Owner"
+        ADMIN = "admin", "Admin"
+        ACCOUNTANT = "accountant", "Akuntan"
+
+    role = models.CharField(max_length=20, choices=Role.choices, default=Role.ADMIN)
+</code></pre>
+<p><strong>Bagian ini tugasnya apa?</strong> Memberikan kartu tanda pengenal (peran jabatan) untuk setiap orang yang login ke dalam sistem.<br>
+<strong>Caranya bagaimana?</strong> <code>AbstractUser</code> adalah kartu pengenal standar bawaan Django (sudah punya username dan password). Kita tambahkan satu kolom baru bernama <code>role</code> dengan 3 pilihan pasti: Owner, Admin, atau Akuntan. Standarnya (<code>default</code>), pengguna baru dianggap staf Admin biasa.</p>
+
+<h3>4.2 Perlindungan Formulir Aset (<code>assets/models.py</code>)</h3>
+<pre><code>class Asset(models.Model):
+    asset_code = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=200)
+    category = models.ForeignKey(AssetCategory, on_delete=models.PROTECT, related_name="assets")
+    location = models.ForeignKey(Location, on_delete=models.PROTECT, related_name="assets")
+    acquisition_cost = models.DecimalField(max_digits=16, decimal_places=2, validators=[MinValueValidator(0)])
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.DRAFT)
+</code></pre>
+<p><strong>Bagian ini tugasnya apa?</strong> Menjaga agar data barang aman dan tidak bisa dihapus sembarangan secara tidak sengaja.<br>
+<strong>Caranya bagaimana?</strong> Perhatikan perintah <code>on_delete=models.PROTECT</code>. Artinya: jika ada staf yang tidak sengaja ingin menghapus kategori "Peralatan Bar", sistem akan menolak karena masih ada mesin espresso yang terhubung di bawah kategori itu. Selain itu, harga beli dilindungi <code>MinValueValidator(0)</code> agar tidak ada angka minus.</p>
+
+<h3>4.3 Filter Angka di Dashboard (<code>assets/views.py</code>)</h3>
+<pre><code>@login_required
+def dashboard(request):
+    assets = Asset.objects.all()
+    active_assets = assets.filter(status=Asset.Status.ACTIVE)
+    total_cost = active_assets.aggregate(total=Sum("acquisition_cost"))["total"] or Decimal("0")
+    plan_total = ProcurementPlanLine.objects.aggregate(total=Sum("total_cost"))["total"] or Decimal("0")
+</code></pre>
+<p><strong>Bagian ini tugasnya apa?</strong> Menjadi juru hitung ringkasan data saat pengguna pertama kali membuka dashboard utama.<br>
+<strong>Caranya bagaimana?</strong> Baris <code>filter(status=Asset.Status.ACTIVE)</code> memastikan bahwa total nilai kekayaan yang dijumlahkan <strong>hanya dari barang yang sudah sah aktif</strong>. Nilai rencana pengadaan (<code>plan_total</code>) dihitung di tempat terpisah sehingga tidak tercampur dengan aset riil.</p>
+
+<h3>4.4 Pengaman Penyusutan Bulanan (<code>assets/services/depreciation.py</code>)</h3>
+<pre><code>@transaction.atomic
+def create_depreciation_run(period, user):
+    period = period.replace(day=1)
+    current_month = timezone.localdate().replace(day=1)
+    if period > current_month:
+        raise ValidationError("Periode penyusutan tidak boleh berada di masa depan.")
+    if DepreciationRun.objects.filter(period=period).exists():
+        raise ValidationError("Periode ini sudah memiliki proses penyusutan.")
+</code></pre>
+<p><strong>Bagian ini tugasnya apa?</strong> Mencegah salah hitung akuntansi yang bisa merusak laporan keuangan bulanan.<br>
+<strong>Caranya bagaimana?</strong> Simbol <code>@transaction.atomic</code> bekerja seperti prinsip <em>"Semua atau Batal Total"</em>. Jika sistem sedang memproses 100 barang lalu di tengah jalan terjadi error pada barang ke-40, sistem langsung membatalkan seluruh operasi dari awal agar data tidak pincang. Perintah berikutnya memastikan satu bulan tidak boleh disusutkan 2 kali.</p>
+
+<h2>BAB 5: SIMULASI PERTANYAAN DOSEN & JAWABAN SIAP PAKAI</h2>
+
+<div class="qna-card">
+  <div class="qna-question">Dosen: "Kenapa data Rencana Pengadaan (Procurement Plan) dan Aset Aktif harus dipisah di tabel berbeda?"</div>
+  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. Untuk menjaga integritas prinsip akuntansi. Barang di rencana pengadaan sifatnya baru estimasi niat belanja, belum tentu dibeli. Jika langsung dicatat sebagai aset aktif, nilai kekayaan kafe di laporan neraca akan menggembung tidak sah (overstated). Maka di sistem ini harus diverifikasi dulu sampai barangnya fisik ada, baru statusnya diubah menjadi aktif."</em></div>
+</div>
+
+<div class="qna-card">
+  <div class="qna-question">Dosen: "Mengapa kamu memakai on_delete=models.PROTECT, bukan CASCADE?"</div>
+  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. Jika menggunakan CASCADE, seandainya ada staf yang tidak sengaja menghapus nama Kategori atau Lokasi, maka seluruh data barang bernilai jutaan rupiah di bawahnya akan ikut terhapus otomatis beserta riwayat jurnalnya. Dengan PROTECT, database mengunci data tersebut sehingga tidak bisa dihapus selama masih ada barang yang menempel."</em></div>
+</div>
+
+<div class="qna-card">
+  <div class="qna-question">Dosen: "Apa fungsi @transaction.atomic pada proses penyusutan dan jurnal?"</div>
+  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. Dalam akuntansi, pencatatan Debet dan Kredit harus mutlak berimbang. @transaction.atomic memastikan sifat 'all-or-nothing'. Jika terjadi gangguan koneksi atau server mati saat mencatat sisi kredit, sistem otomatis membatalkan (rollback) sisi debet. Sehingga tidak akan pernah ada jurnal yang pincang atau data korup di database."</em></div>
+</div>
+
+<div class="qna-card">
+  <div class="qna-question">Dosen: "Bagaimana alur kerja fitur QR Code di aplikasi ini?"</div>
+  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. Aplikasi menggunakan pustaka Python 'qrcode'. Setiap kali aset disetujui, sistem membaca ID unik dan kode barang, lalu menggambar file gambar QR Code secara langsung. QR Code ini bisa dicetak dan ditempelkan pada fisik barang. Saat staf melakukan stock opname (pemeriksaan fisik), barcode dipindai untuk membuka detail data aset tersebut."</em></div>
+</div>
+
+<div class="qna-card">
+  <div class="qna-question">Dosen: "Metode penyusutan apa yang digunakan dan bagaimana perhitungannya?"</div>
+  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Metode utamanya adalah Garis Lurus (Straight Line), Pak/Bu. Rumusnya: Nilai Perolehan dikurangi Nilai Residu (sisa), kemudian dibagi Umur Manfaat dalam bulan. Nilai tersebut dipotongkan secara rata setiap bulannya dari nilai buku barang."</em></div>
+</div>
+
+<div class="qna-card">
+  <div class="qna-question">Dosen: "Jika aplikasi ini mau di-deploy ke internet untuk umum, apa saja penyesuaiannya?"</div>
+  <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Ada tiga hal utama Pak/Bu: Pertama, mengganti database SQLite dengan database server seperti PostgreSQL. Kedua, mematikan mode DEBUG (DEBUG = False) dan mengamankan SECRET_KEY. Ketiga, menggunakan web server produksi seperti Gunicorn dan Nginx dengan enkripsi HTTPS."</em></div>
+</div>
+
+<h2>BAB 6: KOTAK RINGKASAN CEPAT (CHEAT SHEET SIAP UJIAN)</h2>
+<div class="alert-box alert-important">
+  <strong>Rangkuman 3 Menit Sebelum Masuk Ruang Ujian/Asistensi:</strong>
+  <ul>
+    <li><strong>Nama Proyek:</strong> GANS Asset Control (Pengendalian Aset Gan's Cafe & Burjo).</li>
+    <li><strong>Teknologi:</strong> Python 3.13, Django 5.2, Database SQLite, OpenPyXL (Excel), QRCode.</li>
+    <li><strong>3 Peran Akun:</strong>
+      <ul>
+        <li><strong>Owner:</strong> Pemilik (persetujuan akhir transaksi penting dan rekap total).</li>
+        <li><strong>Admin:</strong> Staf operasional (input barang cepat, catat servis, stock opname).</li>
+        <li><strong>Akuntan:</strong> Keuangan (menyetujui penyusutan, posting jurnal debet/kredit).</li>
+      </ul>
+    </li>
+    <li><strong>3 Keunggulan Utama:</strong> Pemisahan rencana vs riil, jurnal akuntansi otomatis berimbang, dan label QR Code untuk cek fisik barang.</li>
+  </ul>
+</div>
+
+<script>
+  // Otomatisasi tampilan bila dibuka langsung
+</script>
+</body>
+</html>
