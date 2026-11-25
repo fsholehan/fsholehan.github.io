@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Panduan Pemrograman GANS Asset Control</title>
+<title>Panduan & Bedah Lengkap Kode GANS Asset Control</title>
 <style>
   @page {
     size: A4;
@@ -58,12 +58,21 @@
     margin-bottom: 10px;
   }
   h3 {
-    color: #2d3748;
+    color: #1a365d;
     font-size: 11.5pt;
-    margin-top: 15px;
+    margin-top: 16px;
     margin-bottom: 6px;
     border-bottom: 1px dashed #cbd5e0;
     padding-bottom: 3px;
+  }
+  .analogy-tag {
+    font-size: 9pt;
+    font-weight: normal;
+    background: #e2e8f0;
+    color: #2b6cb0;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
   }
   .alert-box {
     background-color: #ebf8ff;
@@ -105,7 +114,7 @@
     font-size: 9pt;
     overflow-x: auto;
     margin: 8px 0;
-    line-height: 1.4;
+    line-height: 1.45;
   }
   code {
     font-family: 'Consolas', 'Courier New', monospace;
@@ -119,6 +128,22 @@
     background-color: transparent;
     color: #edf2f7;
     padding: 0;
+  }
+  .explanation-list {
+    margin: 6px 0 12px 18px;
+    padding: 0;
+  }
+  .explanation-list li {
+    margin-bottom: 5px;
+  }
+  .tips-box {
+    background-color: #f0fff4;
+    border-left: 4px solid #38a169;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 8px 0 14px 0;
+    font-size: 9.5pt;
+    color: #22543d;
   }
   .qna-card {
     background: #ffffff;
@@ -175,7 +200,7 @@
     h2 {
       page-break-after: avoid;
     }
-    .qna-card, pre, table {
+    .qna-card, pre, table, .tips-box {
       page-break-inside: avoid;
     }
   }
@@ -184,18 +209,18 @@
 <body>
 
 <div class="print-btn-bar">
-  <span><strong>Tips Cetak PDF:</strong> Klik tombol di samping atau tekan <code>Ctrl + P</code>, lalu pilih Destination: <strong>Save as PDF</strong>.</span>
+  <span><strong>Tips Ekspor PDF:</strong> Klik tombol di samping atau tekan <code>Ctrl + P</code>, lalu pilih Destination: <strong>Save as PDF</strong>.</span>
   <button class="btn-print" onclick="window.print()">Simpan / Cetak PDF</button>
 </div>
 
 <div class="header-container">
-  <h1>Panduan & Bedah Kode Proyek: GANS Asset Control</h1>
+  <h1>Panduan & Bedah Lengkap Kode: GANS Asset Control</h1>
   <div class="subtitle">Buku Pegangan Mahasiswa Pemula (Zero-Jargon) untuk Presentasi & Asistensi Dosen</div>
   <div class="badge">Sistem Informasi Pengendalian Aset Tetap • Gan's Cafe & Burjo</div>
 </div>
 
 <div class="alert-box">
-  <strong>Pesan Santai untuk Kamu:</strong> Jangan minder walau kamu belum punya pengalaman koding sama sekali! Pemrograman itu persis seperti kehidupan sehari-hari: ada lemari arsip untuk simpan data, ada formulir yang diisi staf, ada satpam yang memeriksa izin masuk (<code>permissions.py</code>), ada koki pemroses aksi (<code>views.py</code>), ada peta denah jalan (<code>urls.py</code>), ada kamus format (<code>utils.py</code>), dan ada juri pemeriksa kualitas (<code>tests.py</code>). Panduan ini dirancang memakai analogi sederhana agar kamu paham cara kerjanya dan siap menjawab pertanyaan dosen dengan tenang.
+  <strong>Pesan Santai untuk Kamu:</strong> Jangan minder walau kamu belum punya pengalaman koding sama sekali! Pemrograman itu persis seperti kehidupan nyata di kantor: ada lemari arsip untuk simpan data, ada satpam yang memeriksa izin kartu (<code>permissions.py</code>), ada koki pengolah aksi (<code>views.py</code>), ada papan denah alamat (<code>urls.py</code>), ada kamus format kecil (<code>utils.py</code>), dan ada juri uji mutu otomatis (<code>tests.py</code>). Panduan ini merinci kode asli proyek dan menjelaskan maksudnya dengan bahasa manusia.
 </div>
 
 <h2>BAB 1: GAMBARAN BESAR APLIKASI (BIG PICTURE)</h2>
@@ -204,22 +229,20 @@
 <p>Aplikasi ini bernama <strong>GANS Asset Control</strong>, yaitu program pencatat kekayaan dan barang inventaris (aset tetap) untuk bisnis kuliner <strong>Gan’s Cafe & Burjo</strong>.</p>
 
 <h3>1.2 Masalah Nyata Apa yang Diselesaikan?</h3>
-<p>Di kafe dan tempat makan, banyak sekali barang mahal: mesin espresso, kulkas, blender komersial, meja kursi, kompor, dan AC. Masalah yang sering terjadi:</p>
 <ol>
-  <li><strong>Rencana Belanja Tercampur Barang Nyata:</strong> Daftar barang yang baru sebatas <em>niat mau dibeli</em> sering tercatat sebagai aset asli, sehingga nilai kekayaan kafe jadi palsu.</li>
-  <li><strong>Barang Hilang atau Rusak Tanpa Catatan:</strong> Tidak ada yang tahu siapa penanggung jawab barang atau kapan terakhir diservis.</li>
-  <li><strong>Penyusutan Nilai Tidak Dihitung:</strong> Mesin kopi 15 juta setelah dipakai 2 tahun tentu nilainya turun (mengalami penyusutan). Jika tidak dihitung, laporan laba-rugi bisnis jadi kacau.</li>
+  <li><strong>Rencana Belanja Tercampur Barang Nyata:</strong> Daftar barang yang baru sebatas <em>rencana mau dibeli</em> sering tercatat sebagai aset asli, sehingga nilai kekayaan kafe jadi palsu.</li>
+  <li><strong>Barang Hilang atau Rusak Tanpa Jejak:</strong> Tidak ada yang tahu siapa penanggung jawab barang atau kapan terakhir diservis.</li>
+  <li><strong>Penyusutan Nilai Tidak Dihitung:</strong> Mesin kopi 15 juta setelah dipakai 2 tahun tentu nilainya turun (aus). Jika tidak dihitung, laporan laba-rugi kafe jadi tidak akurat.</li>
 </ol>
-<p><strong>Solusi Aplikasi Ini:</strong> Memisahkan jalur rencana belanja vs aset fisik, mewajibkan persetujuan (verifikasi) sebelum barang diakui, membuatkan label QR Code untuk ditempel di fisik barang, serta menghitung penyusutan harga dan jurnal akuntansi otomatis tiap bulan.</p>
+<p><strong>Solusi Aplikasi:</strong> Memisahkan jalur rencana belanja vs aset fisik, mewajibkan persetujuan (verifikasi) sebelum barang diakui, membuatkan label QR Code siap cetak, serta menghitung penyusutan harga dan jurnal akuntansi otomatis tiap bulan.</p>
 
-<h3>1.3 Alur Kerja Utama Aplikasi</h3>
+<h3>1.3 Alur Kerja Utama Sistem</h3>
 <ol>
-  <li><strong>Staf Login:</strong> Masuk sesuai peran akun (Owner, Admin, atau Akuntan).</li>
-  <li><strong>Input Barang:</strong> Staf memasukkan data lewat menu <em>Input Cepat</em> atau impor Excel. Data masuk antrean dengan status <code>Draft</code> atau <code>Menunggu Pemeriksaan</code>.</li>
-  <li><strong>Verifikasi:</strong> Owner atau Akuntan memeriksa data. Jika sudah sesuai, status disetujui menjadi <code>Aktif</code>.</li>
-  <li><strong>Label QR Code:</strong> Sistem membuatkan gambar barcode kotak (QR Code) siap cetak untuk ditempel di mesin atau perabotan kafe.</li>
-  <li><strong>Akhir Bulan:</strong> Akuntan menjalankan modul penyusutan bulanan untuk memotong nilai buku secara adil dan membuat jurnal otomatis.</li>
-  <li><strong>Dashboard & Opname:</strong> Pemilik memantau total aset aktif di layar utama serta mengecek kondisi fisik barang berkala (Stock Opname).</li>
+  <li><strong>Login Pengguna:</strong> Masuk sesuai peran akun (Owner, Admin, atau Akuntan).</li>
+  <li><strong>Input Barang:</strong> Staf memasukkan data lewat formulir Input Cepat. Data masuk dengan status <code>Draft</code> atau <code>Menunggu Pemeriksaan</code>.</li>
+  <li><strong>Verifikasi:</strong> Owner atau Akuntan meninjau dan menyetujui barang menjadi status <code>Aktif</code>.</li>
+  <li><strong>Cetak QR Code:</strong> Barcode kotak ditempelkan pada fisik mesin atau perabotan kafe.</li>
+  <li><strong>Penyusutan & Jurnal:</strong> Di akhir bulan, Akuntan menjalankan modul penyusutan bulanan untuk mencatat biaya ke buku besar secara otomatis.</li>
 </ol>
 
 <h2>BAB 2: KAMUS ISTILAH KODING (BAHASA SEHARI-HARI)</h2>
@@ -227,73 +250,81 @@
   <thead>
     <tr>
       <th style="width: 25%;">Istilah Teknis</th>
-      <th style="width: 30%;">Analogi Kehidupan Sehari-hari</th>
+      <th style="width: 30%;">Analogi Sehari-hari</th>
       <th>Artinya dalam Aplikasi Ini</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><strong>Framework (Django)</strong></td>
-      <td><strong>Pabrik Cetakan Rumah Jadi.</strong> Kita tidak perlu buat semen dan bata dari nol; cetakan fondasi dan atapnya sudah disediakan.</td>
-      <td>Kerangka kerja berbasis bahasa Python agar kita bisa membuat web yang aman, teratur, dan cepat.</td>
+      <td><strong>Pabrik Cetakan Rumah.</strong> Fondasi, pintu, dan atap sudah tersedia.</td>
+      <td>Kerangka kerja berbasis bahasa Python agar pembuatan web teratur, aman, dan cepat.</td>
     </tr>
     <tr>
       <td><strong>Database (SQLite)</strong></td>
       <td><strong>Lemari Arsip Digital.</strong></td>
-      <td>Tempat seluruh data barang, akun staf, dan catatan tersimpan di file <code>db.sqlite3</code>.</td>
+      <td>File <code>db.sqlite3</code> tempat semua data barang dan catatan transaksi tersimpan permanen.</td>
     </tr>
     <tr>
       <td><strong>Model (<code>models.py</code>)</strong></td>
       <td><strong>Blangko Formulir Kosong.</strong></td>
-      <td>Rancangan tabel: kolom apa saja yang wajib diisi (nama barang, harga beli, lokasi, penanggung jawab).</td>
+      <td>Rancangan tabel dan kolom data (nama barang, harga beli, lokasi, penanggung jawab).</td>
     </tr>
     <tr>
       <td><strong>View (<code>views.py</code>)</strong></td>
       <td><strong>Koki di Dapur Restoran.</strong></td>
-      <td>Logika pemroses: menerima pesanan dari pengunjung, mengambil data dari lemari arsip, mengolah hitungan, lalu menyajikannya ke piring tampilan.</td>
+      <td>Logika pemroses: menerima pesanan dari pengguna, mengambil bahan dari arsip, mengolah, dan menyajikannya ke tampilan.</td>
     </tr>
     <tr>
       <td><strong>Template (<code>.html</code>)</strong></td>
       <td><strong>Piring Sajian / Brosur Tampilan.</strong></td>
-      <td>Tampilan visual yang dilihat mata pengguna di layar browser (tombol, warna, tabel data).</td>
+      <td>Tampilan visual yang dilihat mata pengguna di browser (warna, tombol, kartu ringkasan).</td>
     </tr>
     <tr>
       <td><strong>URL (<code>urls.py</code>)</strong></td>
       <td><strong>Papan Penunjuk Jalan / Daftar Menu.</strong></td>
-      <td>Mengarahkan alamat: kalau pengguna klik <code>/aset/</code>, antarkan ke koki pembuat daftar aset.</td>
+      <td>Mengarahkan alamat link di web ke koki pengolah yang sesuai.</td>
     </tr>
     <tr>
       <td><strong>Decorator / Permission</strong></td>
       <td><strong>Satpam di Pintu Masuk VIP.</strong></td>
-      <td>Memeriksa apakah orang yang mau masuk punya tiket/kartu akses yang sah (Owner/Admin/Akuntan).</td>
+      <td>Memeriksa apakah orang yang mau masuk punya izin sah (Owner/Admin/Akuntan).</td>
     </tr>
     <tr>
       <td><strong>Unit Test (<code>tests.py</code>)</strong></td>
-      <td><strong>Uji Kelayakan / Uji Tabrak Produk.</strong></td>
-      <td>Program simulasi robotik yang menguji apakah semua fitur bekerja benar tanpa harus diklik manual satu per satu.</td>
+      <td><strong>Robot Uji Tabrak / Uji Mutu Pabrik.</strong></td>
+      <td>Program simulasi robotik yang menguji seluruh fitur secara instan tanpa perlu diklik manual satu per satu.</td>
     </tr>
   </tbody>
 </table>
 
 <h2>BAB 3: PETA FOLDER & FUNGSI FILE UTAMA</h2>
 <ul>
-  <li><code>manage.py</code>: Saklar kendali utama di terminal untuk menghidupkan server web dan memperbarui database.</li>
+  <li><code>manage.py</code>: Saklar pengendali utama di terminal untuk menghidupkan server web dan memperbarui database.</li>
   <li><code>config/settings.py</code>: Buku aturan utama aplikasi (pengaturan zona waktu Indonesia, modul aktif, dan keamanan).</li>
   <li><code>accounts/models.py</code>: Mengatur daftar pengguna dan membagi 3 jabatan: <strong>Owner</strong>, <strong>Admin</strong>, dan <strong>Akuntan</strong>.</li>
-  <li><code>assets/models.py</code>: Lemari arsip inti tempat formulir data aset, lokasi, kategori, riwayat servis, dan catatan jurnal disimpan.</li>
-  <li><code>assets/permissions.py</code>: <strong>Satpam Penjaga Pintu.</strong> Membatasi halaman tertentu hanya bisa dibuka oleh peran yang berhak.</li>
-  <li><code>assets/urls.py</code>: <strong>Papan Petunjuk Arah.</strong> Menghubungkan alamat web di browser ke fungsi pengolah di kodingan.</li>
-  <li><code>assets/views.py</code>: <strong>Koki Utama Sistem.</strong> Menangani semua aksi tombol: tambah aset, setujui verifikasi, filter pencarian, dan cetak QR.</li>
-  <li><code>assets/utils.py</code>: <strong>Alat Bantu / Kamus Kecil.</strong> Menerjemahkan angka bulan komputer menjadi nama bulan Indonesia ("Januari", "Februari").</li>
-  <li><code>assets/tests.py</code>: <strong>Juri Uji Mutu Otomatis.</strong> Memastikan fitur impor Excel, penyusutan, dan jurnal tidak pernah rusak saat kodingan diubah.</li>
-  <li><code>assets/services/depreciation.py</code>: Mesin hitung rumus matematika penyusutan nilai barang bulanan.</li>
-  <li><code>assets/services/journals.py</code>: Juru tulis akuntansi otomatis (memastikan pencatatan Debet dan Kredit selalu seimbang).</li>
+  <li><code>assets/models.py</code>: Lemari arsip data barang, lokasi, kategori, riwayat mutasi, dan pencatatan jurnal.</li>
+  <li><code>assets/permissions.py</code>: <strong>Satpam Penjaga Pintu.</strong> Membatasi akses menu agar tidak dimasuki staf tanpa hak.</li>
+  <li><code>assets/urls.py</code>: <strong>Papan Petunjuk Rute.</strong> Menghubungkan alamat web ke fungsi kodingan yang tepat.</li>
+  <li><code>assets/views.py</code>: <strong>Koki Utama Sistem.</strong> Menangani pengolahan data, tombol simpan, verifikasi, dan cetak QR Code.</li>
+  <li><code>assets/utils.py</code>: <strong>Alat Bantu / Kamus Terjemahan.</strong> Mengubah angka bulan komputer ke format nama bulan Indonesia.</li>
+  <li><code>assets/tests.py</code>: <strong>Juri Uji Mutu Otomatis.</strong> Memastikan fitur impor Excel, penyusutan, dan jurnal selalu bekerja akurat.</li>
+  <li><code>assets/services/depreciation.py</code>: Mesin hitung rumus penyusutan harga bulanan.</li>
+  <li><code>assets/services/journals.py</code>: Juru tulis akuntansi otomatis (Debet dan Kredit harus selalu seimbang).</li>
 </ul>
 
-<h2>BAB 4: BEDAH KODE BAGIAN DEMI BAGIAN (LINE-BY-LINE)</h2>
+<h2>BAB 4: BEDAH KODING MENDALAM FILE-FILE KUNCI</h2>
 
-<h3>4.1 Satpam Hak Akses Halaman (<code>assets/permissions.py</code>)</h3>
-<pre><code>def role_required(*roles):
+<!-- PERMISSIONS.PY -->
+<h3>4.1 Bedah File: <code>assets/permissions.py</code> <span class="analogy-tag">Analogi: Satpam Pintu Masuk VIP</span></h3>
+<p>File ini bertugas menghentikan orang yang tidak punya wewenang agar tidak sembarangan masuk ke halaman rahasia (misalnya staf kasir dilarang menyetujui jurnal keuangan).</p>
+
+<pre><code>from functools import wraps
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+
+
+def role_required(*roles):
     def decorate(view_func):
         @wraps(view_func)
         @login_required
@@ -302,34 +333,60 @@
             if user.is_superuser or user.role in roles:
                 return view_func(request, *args, **kwargs)
             raise PermissionDenied
-        return wrapped
-    return decorate
-</code></pre>
-<p><strong>Bagian ini tugasnya apa?</strong> Menjadi satpam di depan pintu setiap halaman web agar orang yang tidak punya wewenang langsung dicegah masuk.<br>
-<strong>Caranya bagaimana?</strong> 
-Fungsi ini disebut <em>Decorator</em> (pelindung). Saat sebuah halaman ditempeli label <code>@role_required("admin", "owner")</code>, satpam ini akan mengecek:
-1. Apakah pengguna sudah login? (<code>@login_required</code>). Kalau belum, disuruh login dulu.
-2. Apakah pengguna adalah Superuser atau memiliki jabatan yang diizinkan? Jika YA, pintu dibuka (halaman tampil).
-3. Jika TIDAK (misal kasir biasa ingin menyetujui jurnal akuntansi), satpam langsung melempar pesan penolakan: <code>raise PermissionDenied</code> (Error 403: Dilarang Masuk).</p>
 
-<h3>4.2 Papan Petunjuk Rute Alamat (<code>assets/urls.py</code>)</h3>
-<pre><code>urlpatterns = [
+        return wrapped
+
+    return decorate
+
+
+def is_owner(user):
+    return user.is_authenticated and (user.is_superuser or user.role == "owner")
+</code></pre>
+
+<p><strong>Penjelasan Logika Koding:</strong></p>
+<ul class="explanation-list">
+  <li><code>def role_required(*roles):</code> Ini disebut <em>Decorator</em> (pembungkus pelindung). Tanda bintang <code>*roles</code> membuat kita fleksibel memasukkan beberapa jabatan sekaligus, contoh: <code>@role_required("admin", "owner")</code>.</li>
+  <li><code>@login_required:</code> Pemeriksaan tahap 1. Satpam memastikan pengunjung sudah punya akun dan berhasil login. Kalau belum, langsung diarahkan ke form login.</li>
+  <li><code>user = request.user:</code> Mengambil data kartu identitas orang yang sedang membuka layar web.</li>
+  <li><code>if user.is_superuser or user.role in roles:</code> Satpam memeriksa kartu: apakah dia programmer utama (<em>superuser</em>) ATAU jabatannya ada di dalam daftar izin? Jika YA, pintu dibuka (<code>return view_func(...)</code>).</li>
+  <li><code>raise PermissionDenied:</code> Jika TIDAK, satpam langsung mengusir dan menolak akses dengan melempar Error HTTP 403 (Dilarang Masuk).</li>
+</ul>
+<div class="tips-box">
+  <strong>Cara Jawab ke Dosen:</strong> <em>"Di file permissions.py ini kami membuat decorator mandiri <code>role_required</code> Pak/Bu, agar manajemen hak akses (Role-Based Access Control) terpusat rapi dan mudah ditempelkan di halaman mana saja."</em>
+</div>
+
+<!-- URLS.PY -->
+<h3>4.2 Bedah File: <code>assets/urls.py</code> <span class="analogy-tag">Analogi: Papan Petunjuk Jalan / Daftar Menu</span></h3>
+<p>File ini menghubungkan alamat link yang diketik orang di browser dengan fungsi koki pemrosesnya di <code>views.py</code>.</p>
+
+<pre><code>from django.urls import path
+from . import views
+
+urlpatterns = [
     path("", views.dashboard, name="dashboard"),
     path("aset/", views.asset_list, name="asset_list"),
     path("aset/input-cepat/", views.asset_quick_create, name="asset_quick_create"),
     path("aset/verifikasi/", views.asset_verification, name="asset_verification"),
+    path("aset/&lt;int:pk&gt;/", views.asset_detail, name="asset_detail"),
     path("aset/&lt;int:pk&gt;/qr/", views.asset_qr, name="asset_qr"),
     path("penyusutan/", views.depreciation_list, name="depreciation_list"),
-    path("penyusutan/&lt;int:pk&gt;/posting/", views.depreciation_post, name="depreciation_post"),
 ]
 </code></pre>
-<p><strong>Bagian ini tugasnya apa?</strong> Menjadi resepsionis atau papan denah yang memetakan alamat yang diketik di browser ke koki pemroses di <code>views.py</code>.<br>
-<strong>Caranya bagaimana?</strong> 
-* <code>path("", views.dashboard, name="dashboard")</code>: Jika alamatnya kosong (halaman utama <code>http://127.0.0.1:8000/</code>), panggil koki <code>views.dashboard</code>.
-* <code>path("aset/&lt;int:pk&gt;/qr/", views.asset_qr, ...)</code>: Perhatikan tanda <code>&lt;int:pk&gt;</code>. <code>pk</code> singkatan dari <em>Primary Key</em> (Nomor ID unik aset). Jika pengguna membuka <code>/aset/12/qr/</code>, sistem tahu bahwa yang diminta adalah QR Code untuk barang dengan ID nomor 12!
-* Parameter <code>name="..."</code> berguna sebagai nama panggilan cepat di kodingan, jadi jika suatu saat alamat link diubah, kita tidak perlu mengganti semua tombol di file HTML.</p>
 
-<h3>4.3 Koki Utama Pemroses Halaman (<code>assets/views.py</code>)</h3>
+<p><strong>Penjelasan Logika Koding:</strong></p>
+<ul class="explanation-list">
+  <li><code>path("", views.dashboard, name="dashboard"):</code> Bagian kutip kosong <code>""</code> artinya alamat beranda/utama (misal <code>http://127.0.0.1:8000/</code>). Saat dibuka, panggil koki <code>views.dashboard</code>.</li>
+  <li><code>name="dashboard":</code> Nama panggilan rahasia di dalam kodingan. Jika sewaktu-waktu link web diubah, seluruh tombol di file HTML tidak akan rusak karena tombol memanggil namanya, bukan link mentahnya.</li>
+  <li><code>path("aset/&lt;int:pk&gt;/qr/", views.asset_qr, ...):</code> Perhatikan tanda <code>&lt;int:pk&gt;</code>! Ini adalah parameter dinamis. <code>int</code> artinya harus angka bulat, dan <code>pk</code> adalah singkatan dari <em>Primary Key</em> (Nomor ID unik aset). Jika membuka link <code>aset/15/qr/</code>, sistem tahu bahwa yang diminta adalah QR Code untuk barang nomor 15!</li>
+</ul>
+<div class="tips-box">
+  <strong>Cara Jawab ke Dosen:</strong> <em>"urls.py berfungsi sebagai router atau dispatcher Pak/Bu. Kami menggunakan path converter seperti <code>&lt;int:pk&gt;</code> untuk menangani rute dinamis berdasarkan ID data aset di database."</em>
+</div>
+
+<!-- VIEWS.PY -->
+<h3>4.3 Bedah File: <code>assets/views.py</code> <span class="analogy-tag">Analogi: Koki Utama di Dapur Restoran</span></h3>
+<p>File ini memproses logika bisnis: membaca data dari lemari database, memvalidasi input formulir, dan membuat keputusan.</p>
+
 <pre><code>@role_required("admin", "owner")
 @transaction.atomic
 def asset_quick_create(request):
@@ -339,7 +396,9 @@ def asset_quick_create(request):
             data = form.cleaned_data
             asset = Asset.objects.create(
                 asset_code=next_asset_code(data["location"]),
-                name=data["name"], category=data["category"], location=data["location"],
+                name=data["name"],
+                category=data["category"],
+                location=data["location"],
                 status=Asset.Status.PENDING_REVIEW,
                 acquisition_date=data["acquisition_date"],
                 acquisition_cost=data["acquisition_cost"],
@@ -350,53 +409,93 @@ def asset_quick_create(request):
             record_audit(request.user, "asset", asset.pk, "quick_created_pending_review")
             messages.success(request, f"{asset.name} dikirim ke antrean verifikasi.")
             return redirect("asset_verification")
+    else:
+        form = QuickAssetForm()
+    return render(request, "assets/quick_asset_form.html", {"form": form})
 </code></pre>
-<p><strong>Bagian ini tugasnya apa?</strong> Mengurus formulir "Input Cepat" saat staf kafe baru saja menerima barang fisik di lapangan.<br>
-<strong>Caranya bagaimana?</strong> 
-1. Dilindungi <code>@role_required("admin", "owner")</code>: Hanya Admin dan Owner yang boleh menginput.
-2. <code>if request.method == "POST"</code>: Memeriksa apakah staf baru membuka halaman kosong (GET) atau sudah menekan tombol "Simpan" (POST).
-3. <code>next_asset_code(data["location"])</code>: Otomatis membuatkan kode aset rapi sesuai lokasi (misal: <code>BAR-0001</code>).
-4. Status awal disetel ke <code>PENDING_REVIEW</code> agar tidak langsung masuk neraca keuangan.
-5. <code>record_audit(...)</code>: Mencatat jejak digital di buku log audit: siapa yang menginput, barang apa, dan tanggal berapa.</p>
 
-<h3>4.4 Kamus Format Tanggal Bahasa Indonesia (<code>assets/utils.py</code>)</h3>
+<p><strong>Penjelasan Logika Koding:</strong></p>
+<ul class="explanation-list">
+  <li><code>@role_required("admin", "owner"):</code> Memanggil satpam dari file permissions tadi! Hanya Admin dan Owner yang boleh mencatat barang.</li>
+  <li><code>@transaction.atomic:</code> Prinsip "Semua atau Batal Total". Jika terjadi error sistem di tengah jalan, seluruh penyimpanan dibatalkan agar database tidak menyimpan data cacat.</li>
+  <li><code>if request.method == "POST":</code> Membedakan aksi: jika staf baru membuka halaman kosong itu adalah <strong>GET</strong> (tampilkan blangko kosong), jika staf sudah menekan tombol simpan itu adalah <strong>POST</strong> (mulai simpan data).</li>
+  <li><code>asset_code=next_asset_code(data["location"]):</code> Membuat kode barang otomatis sesuai lokasi (misal lokasi Bar menghasilkan <code>BAR-0001</code>).</li>
+  <li><code>status=Asset.Status.PENDING_REVIEW:</code> Kunci integritas akuntansi! Barang tidak langsung diakui sebagai aset aktif, melainkan menunggu verifikasi.</li>
+  <li><code>record_audit(...):</code> Mencatat riwayat digital di buku audit trail: siapa yang menginput dan jam berapa.</li>
+</ul>
+<div class="tips-box">
+  <strong>Cara Jawab ke Dosen:</strong> <em>"views.py adalah controller logika bisnis. Fungsi ini memisahkan alur request GET untuk menampilkan form dan POST untuk memvalidasi isian serta merekam log audit sebelum data disimpan."</em>
+</div>
+
+<!-- UTILS.PY -->
+<h3>4.4 Bedah File: <code>assets/utils.py</code> <span class="analogy-tag">Analogi: Kotak Perkakas / Kamus Terjemahan</span></h3>
+<p>File ini berisi fungsi-fungsi pembantu kecil yang berdiri sendiri dan sering dipakai berulang-ulang di berbagai tempat.</p>
+
 <pre><code>INDONESIAN_MONTHS = (
     "Januari", "Februari", "Maret", "April", "Mei", "Juni",
     "Juli", "Agustus", "September", "Oktober", "November", "Desember",
 )
 
+INDONESIAN_SHORT_MONTHS = (
+    "Jan", "Feb", "Mar", "Apr", "Mei", "Jun",
+    "Jul", "Agu", "Sep", "Okt", "Nov", "Des",
+)
+
+
 def format_indonesian_month(value, abbreviated=False):
     months = INDONESIAN_SHORT_MONTHS if abbreviated else INDONESIAN_MONTHS
     return f"{months[value.month - 1]} {value.year}"
 </code></pre>
-<p><strong>Bagian ini tugasnya apa?</strong> Menerjemahkan angka bulan komputer menjadi tulisan nama bulan yang ramah dibaca manusia Indonesia.<br>
-<strong>Caranya bagaimana?</strong> 
-Komputer menyimpan tanggal dalam bentuk angka (misalnya bulan ke-3 tahun 2026). Komputer biasanya menggunakan bahasa Inggris ("March"). Fungsi kecil ini mengambil angka bulan (3), menguranginya dengan 1 (karena urutan daftar di Python mulai dari angka 0), lalu mengambil kata di posisi tersebut yaitu <code>"Maret"</code> dan menggabungkannya dengan tahun sehingga tampil cantik: <strong>"Maret 2026"</strong>.</p>
 
-<h3>4.5 Juri Uji Mutu Otomatis (<code>assets/tests.py</code>)</h3>
+<p><strong>Penjelasan Logika Koding:</strong></p>
+<ul class="explanation-list">
+  <li><code>INDONESIAN_MONTHS = (...):</code> Daftar baku nama 12 bulan dalam bahasa Indonesia.</li>
+  <li><code>def format_indonesian_month(...):</code> Menerjemahkan tanggal sistem komputer menjadi teks ramah manusia.</li>
+  <li><code>months[value.month - 1]:</code> Komputer menyimpan bulan dalam angka 1 sampai 12 (misal bulan 3 untuk Maret). Namun dalam koding, urutan daftar selalu dimulai dari angka 0, bukan 1. Maka: <code>3 - 1 = 2</code>. Item urutan ke-2 adalah <code>"Maret"</code>.</li>
+  <li><code>return f"{months[...]} {value.year}":</code> Menghasilkan format tulisan rapi, contoh: <strong>"Maret 2026"</strong>, yang digunakan pada laporan penyusutan bulanan.</li>
+</ul>
+<div class="tips-box">
+  <strong>Cara Jawab ke Dosen:</strong> <em>"utils.py adalah modular helper functions. Kami memisahkan logika pemformatan nama bulan Indonesia ke sini agar kode di views dan models tetap bersih sesuai prinsip DRY (Don't Repeat Yourself)."</em>
+</div>
+
+<!-- TESTS.PY -->
+<h3>4.5 Bedah File: <code>assets/tests.py</code> <span class="analogy-tag">Analogi: Robot Penguji Uji Tabrak Mobil</span></h3>
+<p>Alih-alih mengklik tombol satu per satu di browser untuk mengecek error, file ini berisi robot simulasi pengujian otomatis.</p>
+
 <pre><code>class WorkbookImportTests(TestCase):
     def setUp(self):
+        # 1. Menyiapkan akun staf tiruan untuk pengujian
         self.user = User.objects.create_user(username="admin", role="admin")
 
     def test_plan_and_existing_asset_on_same_sheet_row_are_preserved_separately(self):
-        # Membuat file simulasi Excel di memori
+        # 2. Robot membuat file Excel tiruan di memori
         workbook = Workbook()
         ws = workbook.active
         ws.append(["Blender baru", 1, 300000, 300000, None, None, "Mixer lama", 1, None, "30 WATT", 200000])
         ...
+        # 3. Robot menjalankan fungsi impor file
         batch = import_workbook(upload, self.user)
 
+        # 4. Robot memastikan hasilnya sesuai aturan bisnis
         self.assertEqual(batch.rows.count(), 2)
-        self.assertFalse(Asset.objects.exists(), "Impor tidak boleh otomatis jadi aset tetap!")
+        self.assertFalse(Asset.objects.exists(), "Impor tidak boleh otomatis jadi aset aktif!")
 </code></pre>
-<p><strong>Bagian ini tugasnya apa?</strong> Menguji seluruh logika sistem secara otomatis untuk memastikan tidak ada kecacatan program.<br>
-<strong>Caranya bagaimana?</strong> 
-File ini berisi robot penguji. Misalnya fungsi <code>test_plan_and_existing_asset...</code>: robot ini pura-pura membuat file Excel, mengunggahnya ke program, lalu mengecek apakah baris belanjaan terpisah dengan benar. Perintah <code>self.assertFalse(Asset.objects.exists())</code> adalah ujian tegas: <em>"Buktikan bahwa data yang baru diimpor dari Excel TIDAK langsung menjadi aset aktif!"</em>. Jika aturan dilanggar, tes akan berbunyi merah (Gagal).</p>
+
+<p><strong>Penjelasan Logika Koding:</strong></p>
+<ul class="explanation-list">
+  <li><code>class WorkbookImportTests(TestCase):</code> Laboratorium uji untuk fitur membaca file Excel.</li>
+  <li><code>def setUp(self):</code> Menyiapkan data awal sebelum pengujian dimulai (membuat user admin tiruan).</li>
+  <li><code>self.assertEqual(batch.rows.count(), 2):</code> Robot bertanya: <em>"Apakah data yang terbaca benar-benar ada 2 baris?"</em> Jika iya, pengujian lolos.</li>
+  <li><code>self.assertFalse(Asset.objects.exists()):</code> Ini ujian terpenting! Robot membuktikan bahwa barang yang baru dibaca dari file Excel <strong>TIDAK boleh langsung berubah menjadi aset aktif</strong> sebelum diverifikasi. Jika programmer membuat kesalahan koding, robot ini akan langsung memberi peringatan merah (Gagal).</li>
+</ul>
+<div class="tips-box">
+  <strong>Cara Jawab ke Dosen:</strong> <em>"tests.py menjalankan Automated Unit Testing. Dengan perintah <code>python manage.py test assets</code>, kami bisa memvalidasi puluhan skenario integritas data dalam hitungan detik tanpa risiko human error."</em>
+</div>
 
 <h2>BAB 5: SIMULASI PERTANYAAN DOSEN & JAWABAN SIAP PAKAI</h2>
 
 <div class="qna-card">
-  <div class="qna-question">Dosen: "Bagaimana cara sistem kamu mengamankan halaman web agar staf kasir tidak bisa mengakses menu persetujuan atau jurnal?"</div>
+  <div class="qna-question">Dosen: "Bagaimana cara sistem kamu mengamankan halaman web agar staf biasa tidak membuka menu rahasia?"</div>
   <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. Kami membuat modul keamanan khusus di file <code>permissions.py</code> bernama <code>role_required</code>. Fungsi ini bekerja sebagai dekorator pelindung. Ketika sebuah halaman didekorasi dengan <code>@role_required('owner', 'accountant')</code>, sistem akan memeriksa identitas pengguna saat itu. Jika perannya tidak cocok, sistem langsung memblokir akses dan mengeluarkan exception <code>PermissionDenied</code> (HTTP 403 Forbidden)."</em></div>
 </div>
 
@@ -411,7 +510,7 @@ File ini berisi robot penguji. Misalnya fungsi <code>test_plan_and_existing_asse
 </div>
 
 <div class="qna-card">
-  <div class="qna-question">Dosen: "Kenapa proyek ini perlu ada file tests.py? Apakah aplikasinya tidak cukup dites manual dengan diklik-klik saja di browser?"</div>
+  <div class="qna-question">Dosen: "Kenapa proyek ini perlu ada file tests.py? Apakah tidak cukup dites manual dengan diklik di browser?"</div>
   <div class="qna-answer"><strong>Jawaban Siap Pakai:</strong> <em>"Izin menjawab Pak/Bu. Tes manual dengan klik di browser rawan terlewat (human error) dan memakan waktu lama setiap kali ada perubahan kode. File <code>tests.py</code> berisi Unit Test otomatis menggunakan framework pengujian bawaan Django. Cukup ketik perintah <code>python manage.py test assets</code>, komputer akan mengeksekusi puluhan skenario uji—seperti validasi impor Excel, jurnal berimbang, dan rumus penyusutan—hanya dalam hitungan detik untuk membuktikan bahwa tidak ada fungsi yang rusak."</em></div>
 </div>
 
